@@ -13,7 +13,6 @@
 #include <thread>
 #include <chrono>
 
-#include "../common/network/networkHandler.hpp"
 #include "../common/event/eventHandler.hpp"
 
 class Server {

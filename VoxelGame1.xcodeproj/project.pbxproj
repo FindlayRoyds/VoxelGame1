@@ -23,6 +23,7 @@
 		079BA7902A4E52BC0065A0F2 /* block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079BA78E2A4E52BC0065A0F2 /* block.cpp */; };
 		07ECE64A2A52662400D6FA30 /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE6482A52662400D6FA30 /* server.cpp */; };
 		07ECE64D2A557ED700D6FA30 /* eventHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE64B2A557ED700D6FA30 /* eventHandler.cpp */; };
+		07ECE6562A77118600D6FA30 /* connectionRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE6552A77118600D6FA30 /* connectionRequest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -502,6 +503,7 @@
 		07ECE6492A52662400D6FA30 /* server.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = server.hpp; sourceTree = "<group>"; };
 		07ECE64B2A557ED700D6FA30 /* eventHandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = eventHandler.cpp; sourceTree = "<group>"; };
 		07ECE64C2A557ED700D6FA30 /* eventHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = eventHandler.hpp; sourceTree = "<group>"; };
+		07ECE6552A77118600D6FA30 /* connectionRequest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = connectionRequest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -583,6 +585,7 @@
 		076B20F22A50373F00E93255 /* event */ = {
 			isa = PBXGroup;
 			children = (
+				07ECE6542A770B7100D6FA30 /* events */,
 				076B20F42A50375100E93255 /* event.hpp */,
 				07ECE64B2A557ED700D6FA30 /* eventHandler.cpp */,
 				07ECE64C2A557ED700D6FA30 /* eventHandler.hpp */,
@@ -1277,6 +1280,14 @@
 			path = json;
 			sourceTree = "<group>";
 		};
+		07ECE6542A770B7100D6FA30 /* events */ = {
+			isa = PBXGroup;
+			children = (
+				07ECE6552A77118600D6FA30 /* connectionRequest.cpp */,
+			);
+			path = events;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1339,6 +1350,7 @@
 				079BA5C62A41AA970065A0F2 /* graphics.cpp in Sources */,
 				076B207E2A4E6B1400E93255 /* client.cpp in Sources */,
 				079BA5D02A41B0630065A0F2 /* input.cpp in Sources */,
+				07ECE6562A77118600D6FA30 /* connectionRequest.cpp in Sources */,
 				07ECE64D2A557ED700D6FA30 /* eventHandler.cpp in Sources */,
 				076B20F12A4FE09800E93255 /* networkHandler.cpp in Sources */,
 				079BA5A72A3D06620065A0F2 /* main.cpp in Sources */,

@@ -12,6 +12,7 @@
 #include <map>
 
 #include "event.hpp"
+#include "networkHandler.hpp"
 
 class EventHandler {
 public:
@@ -19,7 +20,10 @@ public:
     void pollEvents();
 private:
     bool isServer;
-    std::unordered_map<std::string, Event> eventMap;
+    NetworkHandler networkHandler;
+    std::map<std::string, Event> eventMap{
+        
+    };
 };
 
 #endif /* eventHandler_hpp */

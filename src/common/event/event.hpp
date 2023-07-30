@@ -10,12 +10,14 @@
 
 #include <stdio.h>
 #include <json/json.hpp>
+#include <string>
 
 class Event {
 public:
     Event();
     virtual void process(nlohmann::json eventData);
-private:
+protected:
+    std::string eventName;
 };
 
 #endif /* event_hpp */

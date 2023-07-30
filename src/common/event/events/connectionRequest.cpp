@@ -6,3 +6,14 @@
 //
 
 #include <stdio.h>
+#include "../event.hpp"
+
+class ConnectionRequest: public Event {
+public:
+    ConnectionRequest() {
+        //eventName = "connectionRequest";
+    }
+    void process(nlohmann::json eventData) {
+        
+    }
+};
