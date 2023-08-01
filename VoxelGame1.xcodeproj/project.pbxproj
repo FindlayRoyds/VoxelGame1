@@ -24,6 +24,7 @@
 		07ECE64A2A52662400D6FA30 /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE6482A52662400D6FA30 /* server.cpp */; };
 		07ECE64D2A557ED700D6FA30 /* eventHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE64B2A557ED700D6FA30 /* eventHandler.cpp */; };
 		07ECE65A2A7915C100D6FA30 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE6582A7915C100D6FA30 /* player.cpp */; };
+		07ECE65C2A791DA800D6FA30 /* connectionRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE65B2A791DA800D6FA30 /* connectionRequest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -504,6 +505,7 @@
 		07ECE64C2A557ED700D6FA30 /* eventHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = eventHandler.hpp; sourceTree = "<group>"; };
 		07ECE6582A7915C100D6FA30 /* player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
 		07ECE6592A7915C100D6FA30 /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
+		07ECE65B2A791DA800D6FA30 /* connectionRequest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = connectionRequest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -586,6 +588,7 @@
 		076B20F22A50373F00E93255 /* event */ = {
 			isa = PBXGroup;
 			children = (
+				07ECE65D2A791E2F00D6FA30 /* events */,
 				07ECE64B2A557ED700D6FA30 /* eventHandler.cpp */,
 				07ECE64C2A557ED700D6FA30 /* eventHandler.hpp */,
 			);
@@ -1288,6 +1291,14 @@
 			path = player;
 			sourceTree = "<group>";
 		};
+		07ECE65D2A791E2F00D6FA30 /* events */ = {
+			isa = PBXGroup;
+			children = (
+				07ECE65B2A791DA800D6FA30 /* connectionRequest.cpp */,
+			);
+			path = events;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1356,6 +1367,7 @@
 				079BA5A72A3D06620065A0F2 /* main.cpp in Sources */,
 				07ECE64A2A52662400D6FA30 /* server.cpp in Sources */,
 				079BA7902A4E52BC0065A0F2 /* block.cpp in Sources */,
+				07ECE65C2A791DA800D6FA30 /* connectionRequest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

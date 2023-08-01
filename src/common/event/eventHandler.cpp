@@ -39,11 +39,3 @@ void EventHandler::pollEvents()
         }
     }
 }
-
-// --- events --- //
-
-void EventHandler::connectionRequest(ENetPeer*)
-{
-    puts("a new client was connected");
-    server -> addPlayer();
-}
