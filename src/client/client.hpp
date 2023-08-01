@@ -23,11 +23,9 @@
 class Client {
 public:
     Client(GLFWwindow* window);
-    void run();
 private:
     GLFWwindow* window;
     Renderer renderer;
-    EventHandler eventHandler;
 };
 
 #endif /* client_hpp */

@@ -8,13 +8,8 @@
 #include "server.hpp"
 
 Server::Server()
-: eventHandler(this)
 {
-    
-}
-
-void Server::run()
-{
+    EventHandler eventHandler(this);
     ENetPeer* client = nullptr;
     bool connectedToClient = false;
     

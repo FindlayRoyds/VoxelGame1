@@ -13,13 +13,11 @@ void initialiseClient()
 {
     GLFWwindow* window = initializeWindow(800, 600);
     Client client(window);
-    client.run();
 }
 
 void initialiseServer()
 {
     Server server;
-    server.run();
 }
 
 int main(int argc, char **argv)

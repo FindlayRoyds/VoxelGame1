@@ -8,14 +8,10 @@
 #include "client.hpp"
 
 Client::Client(GLFWwindow* window)
-: eventHandler(this)
 {
+    EventHandler eventHandler(this);
     this-> window = window;
-    //this -> run();
-}
-
-void Client::run()
-{
+    
     while(!glfwWindowShouldClose(window)) {
         eventHandler.pollEvents();
         
