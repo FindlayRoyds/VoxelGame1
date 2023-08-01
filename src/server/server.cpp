@@ -7,17 +7,20 @@
 
 #include "server.hpp"
 
-void Server::run() {
-    EventHandler eventHandler(true);
+Server::Server()
+: eventHandler(this)
+{
     
+}
+
+void Server::run()
+{
     ENetPeer* client = nullptr;
     bool connectedToClient = false;
     
     int i = 0;
     while (true) {
         eventHandler.pollEvents();
-        
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
         
         if (connectedToClient) {
             //std::string m = "packet" + std::to_string(i);

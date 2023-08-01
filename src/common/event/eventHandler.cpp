@@ -7,25 +7,40 @@
 
 #include "eventHandler.hpp"
 
-EventHandler::EventHandler(bool isServer) : networkHandler(isServer) {
-    this -> isServer = isServer;
+EventHandler::EventHandler(Server* server)
+: networkHandler(true)
+{
+    isServer = true;
+    this -> server = server;
 }
 
-void EventHandler::pollEvents() {
+EventHandler::EventHandler(Client* client)
+: networkHandler(false)
+{
+    isServer = false;
+    this -> client = client;
+}
+
+void EventHandler::pollEvents()
+{
     for (auto const& event : networkHandler.PollEvent()) {
         switch (event.type) {
             case ENET_EVENT_TYPE_CONNECT:
-                std::cout << "A new client connected" << std::endl;
+                connectionRequest(event.peer);
                 break;
             case ENET_EVENT_TYPE_RECEIVE:
-                std::cout << "A packet was recieved" << std::endl;
                 break;
             case ENET_EVENT_TYPE_DISCONNECT:
-                std::cout << "A peer was disconnected" << std::endl;
                 break;
             case ENET_EVENT_TYPE_NONE:
-                std::cout << "None type event recieved" << std::endl;
                 break;
         }
     }
+}
+
+// --- events --- //
+
+void EventHandler::connectionRequest(ENetPeer*)
+{
+    puts("a new client was connected");
 }

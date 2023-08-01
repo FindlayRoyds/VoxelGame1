@@ -18,7 +18,7 @@
 
 #include "renderer.hpp"
 #include "input.hpp"
-#include "../common/network/networkHandler.hpp"
+#include "eventHandler.hpp"
 
 class Client {
 public:
@@ -27,6 +27,7 @@ public:
 private:
     GLFWwindow* window;
     Renderer renderer;
+    EventHandler eventHandler;
 };
 
 #endif /* client_hpp */

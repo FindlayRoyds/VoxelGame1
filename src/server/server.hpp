@@ -13,11 +13,15 @@
 #include <thread>
 #include <chrono>
 
-#include "../common/event/eventHandler.hpp"
+#include "eventHandler.hpp"
 
-class Server {
+class Server
+{
 public:
+    Server();
     void run();
+private:
+    EventHandler eventHandler;
 };
 
 #endif /* server_hpp */

@@ -9,18 +9,21 @@
 #include "client/client.hpp"
 #include "server/server.hpp"
 
-void initialiseClient() {
+void initialiseClient()
+{
     GLFWwindow* window = initializeWindow(800, 600);
     Client client(window);
     client.run();
 }
 
-void initialiseServer() {
+void initialiseServer()
+{
     Server server;
     server.run();
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
     
     std::thread serverThread(initialiseServer);
     initialiseClient();

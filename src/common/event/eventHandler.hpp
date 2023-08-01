@@ -14,16 +14,27 @@
 #include "event.hpp"
 #include "networkHandler.hpp"
 
-class EventHandler {
+// forward declaration to allow event handler access to server and client instance
+class Server;
+class Client;
+
+class EventHandler
+{
 public:
-    EventHandler(bool isServer);
+    EventHandler(Server* server);
+    EventHandler(Client* client);
+    
     void pollEvents();
 private:
     bool isServer;
     NetworkHandler networkHandler;
-    std::map<std::string, Event> eventMap{
-        
+    union {
+        Server* server;
+        Client* client;
     };
+    // --- events --- //
+    
+    void connectionRequest(ENetPeer*);
 };
 
 #endif /* eventHandler_hpp */
