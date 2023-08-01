@@ -6,6 +6,8 @@
 //
 
 #include "eventHandler.hpp"
+#include "server.hpp"
+#include "client.hpp"
 
 EventHandler::EventHandler(Server* server)
 : networkHandler(true)
@@ -43,4 +45,5 @@ void EventHandler::pollEvents()
 void EventHandler::connectionRequest(ENetPeer*)
 {
     puts("a new client was connected");
+    server -> addPlayer();
 }

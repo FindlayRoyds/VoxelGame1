@@ -20,6 +20,7 @@ class Server
 public:
     Server();
     void run();
+    void addPlayer();
 private:
     EventHandler eventHandler;
 };

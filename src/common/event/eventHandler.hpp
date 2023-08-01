@@ -11,7 +11,6 @@
 #include <stdio.h>
 #include <map>
 
-#include "event.hpp"
 #include "networkHandler.hpp"
 
 // forward declaration to allow event handler access to server and client instance

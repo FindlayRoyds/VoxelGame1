@@ -33,3 +33,8 @@ void Server::run()
         }
     }
 }
+
+void Server::addPlayer()
+{
+    puts("pretty good");
+}
