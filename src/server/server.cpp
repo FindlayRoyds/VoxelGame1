@@ -16,16 +16,6 @@ Server::Server()
     int i = 0;
     while (true) {
         eventHandler.pollEvents();
-        
-        if (connectedToClient) {
-            //std::string m = "packet" + std::to_string(i);
-            int m = i;
-            ENetPacket * packet = enet_packet_create (&m,
-                                                      sizeof (m) + 1,
-                                                      ENET_PACKET_FLAG_RELIABLE);
-            enet_peer_send (client, 0, packet);
-            i++;
-        }
     }
 }
 

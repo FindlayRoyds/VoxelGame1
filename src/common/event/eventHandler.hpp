@@ -10,6 +10,11 @@
 
 #include <stdio.h>
 #include <map>
+#include <json/json.hpp>
+
+#include "event.hpp"
+#include "events/connectionRequest.hpp"
+#include "events/playerAdded.hpp"
 
 #include "networkHandler.hpp"
 
@@ -22,7 +27,7 @@ class EventHandler
 public:
     EventHandler(Server* server);
     EventHandler(Client* client);
-    
+    static void sendEvent(ENetPeer* peer, event::eventType eventName, std::any eventData);
     void pollEvents();
 private:
     bool isServer;
@@ -31,9 +36,6 @@ private:
         Server* server;
         Client* client;
     };
-    // --- events --- //
-    
-    void connectionRequest(ENetPeer*);
 };
 
 #endif /* eventHandler_hpp */

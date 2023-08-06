@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <enet/enet.h>
+#include <json/json.hpp>
 #include <list>
 
 class NetworkHandler {

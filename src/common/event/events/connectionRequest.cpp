@@ -5,12 +5,11 @@
 //  Created by Findlay Royds on 1/08/23.
 //
 
-#include <stdio.h>
-#include "eventHandler.hpp"
-#include "server.hpp"
+#include "connectionRequest.hpp"
 
-void EventHandler::connectionRequest(ENetPeer*)
-{
-    puts("a new client was connected");
-    server -> addPlayer();
+void ConnectionRequest::process(eventDataStruct eventData) {
+    playerAdded::eventDataStruct newEventData;
+    newEventData.name = "bob";
+    EventHandler::sendEvent(eventData.peer, event::eventType::playerAdded, newEventData);
 }
+

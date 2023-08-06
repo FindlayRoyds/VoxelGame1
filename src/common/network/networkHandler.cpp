@@ -7,7 +7,8 @@
 
 #include "networkHandler.hpp"
 
-NetworkHandler::NetworkHandler(bool isServer) {
+NetworkHandler::NetworkHandler(bool isServer)
+{
     address.port = 7776;
     
     if (isServer) {
@@ -42,7 +43,8 @@ NetworkHandler::NetworkHandler(bool isServer) {
 }
 
 
-std::list<ENetEvent> NetworkHandler::PollEvent() {
+std::list<ENetEvent> NetworkHandler::PollEvent()
+{
     std::list<ENetEvent> events;
     ENetEvent* event = new ENetEvent;
     while (enet_host_service(host, event, 0) > 0) {
@@ -52,6 +54,7 @@ std::list<ENetEvent> NetworkHandler::PollEvent() {
     return events;
 }
 
-ENetPeer* NetworkHandler::getServer() {
+ENetPeer* NetworkHandler::getServer()
+{
     return this -> server;
 }

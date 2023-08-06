@@ -14,6 +14,7 @@ EventHandler::EventHandler(Server* server)
 {
     isServer = true;
     this -> server = server;
+    event::setServer(server);
 }
 
 EventHandler::EventHandler(Client* client)
@@ -21,21 +22,56 @@ EventHandler::EventHandler(Client* client)
 {
     isServer = false;
     this -> client = client;
+    event::setClient(client);
 }
 
 void EventHandler::pollEvents()
 {
     for (auto const& event : networkHandler.PollEvent()) {
         switch (event.type) {
-            case ENET_EVENT_TYPE_CONNECT:
-                connectionRequest(event.peer);
+            case ENET_EVENT_TYPE_CONNECT: {
+                ConnectionRequest::eventDataStruct eventData;
+                eventData.peer = event.peer;
+                ConnectionRequest::process(eventData);
                 break;
-            case ENET_EVENT_TYPE_RECEIVE:
+            }
+            case ENET_EVENT_TYPE_RECEIVE: {
+                enet_uint8* rawData = event.packet->data;
+                event::eventDataWrapper wrappedEventData;
+                memcpy(&wrappedEventData, rawData, sizeof(wrappedEventData));
+                std::cout << wrappedEventData.eventName << std::endl;
+                switch (wrappedEventData.eventName) {
+                    case event::eventType::connectionRequest: {
+                        break;
+                    }
+                    case event::eventType::playerAdded: {
+                        playerAdded::eventDataStruct eventData;
+                        memcpy(&eventData, wrappedEventData.eventData, sizeof(*wrappedEventData.eventData));
+                        
+                        playerAdded::processEvent(eventData);
+                        break;
+                    }
+                }
                 break;
+            }
             case ENET_EVENT_TYPE_DISCONNECT:
                 break;
             case ENET_EVENT_TYPE_NONE:
                 break;
         }
     }
+}
+
+void EventHandler::sendEvent(ENetPeer* peer, event::eventType eventName, std::any eventData) {
+    event::eventDataWrapper  wrappedPacketData;
+    wrappedPacketData.eventName = eventName;
+    const char* eventDataChar;
+    memcpy(&eventDataChar, &eventData, sizeof(eventDataChar));
+    wrappedPacketData.eventData = eventDataChar;
+    const void* newData[sizeof(wrappedPacketData)];
+    memcpy(&newData, &wrappedPacketData, sizeof(event::eventDataWrapper));
+    ENetPacket * packet = enet_packet_create (newData,
+                                              sizeof (newData) + 1,
+                                              ENET_PACKET_FLAG_RELIABLE);
+    enet_peer_send(peer, 0, packet);
 }
