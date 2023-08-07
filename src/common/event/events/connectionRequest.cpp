@@ -7,9 +7,9 @@
 
 #include "connectionRequest.hpp"
 
-void ConnectionRequest::process(eventDataStruct eventData) {
+void ConnectionRequest::process(eventDataStruct eventData)
+{
     playerAdded::eventDataStruct newEventData;
-    newEventData.name = "bob";
-    EventHandler::sendEvent(eventData.peer, event::eventType::playerAdded, newEventData);
+    server -> addPlayer(eventData.peer);
 }
 

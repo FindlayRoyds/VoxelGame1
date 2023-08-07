@@ -36,7 +36,7 @@ public:
     };
     struct eventDataWrapper {
         eventType eventName;
-        const char* eventData;
+        std::any eventData;
     };
 protected:
     

@@ -10,16 +10,12 @@
 Server::Server()
 {
     EventHandler eventHandler(this);
-    ENetPeer* client = nullptr;
-    bool connectedToClient = false;
-    
-    int i = 0;
     while (true) {
         eventHandler.pollEvents();
     }
 }
 
-void Server::addPlayer()
+void Server::addPlayer(ENetPeer* peer)
 {
-    puts("pretty good");
+    puts("joined");
 }

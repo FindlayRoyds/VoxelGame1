@@ -11,7 +11,7 @@ class playerAdded: public event
 {
 public:
     struct eventDataStruct {
-        std::string name;
+        bool isLocalPlayer;
     };
     static void processEvent(eventDataStruct eventData);
 };

@@ -32,6 +32,7 @@ void EventHandler::pollEvents()
             case ENET_EVENT_TYPE_CONNECT: {
                 ConnectionRequest::eventDataStruct eventData;
                 eventData.peer = event.peer;
+                eventData.test = "hello";
                 ConnectionRequest::process(eventData);
                 break;
             }
@@ -45,9 +46,10 @@ void EventHandler::pollEvents()
                         break;
                     }
                     case event::eventType::playerAdded: {
-                        playerAdded::eventDataStruct eventData;
+                        /*playerAdded::eventDataStruct eventData;
                         memcpy(&eventData, wrappedEventData.eventData, sizeof(*wrappedEventData.eventData));
-                        
+                        std::cout << sizeof(eventData) << std::endl;*/
+                        playerAdded::eventDataStruct eventData = std::any_cast<playerAdded::eventDataStruct>(wrappedEventData.eventData);
                         playerAdded::processEvent(eventData);
                         break;
                     }
@@ -62,14 +64,15 @@ void EventHandler::pollEvents()
     }
 }
 
-void EventHandler::sendEvent(ENetPeer* peer, event::eventType eventName, std::any eventData) {
+void EventHandler::sendEvent(ENetPeer* peer, event::eventType eventName, std::any eventData)
+{
     event::eventDataWrapper  wrappedPacketData;
     wrappedPacketData.eventName = eventName;
-    const char* eventDataChar;
-    memcpy(&eventDataChar, &eventData, sizeof(eventDataChar));
-    wrappedPacketData.eventData = eventDataChar;
+    wrappedPacketData.eventData = eventData;
+    
     const void* newData[sizeof(wrappedPacketData)];
     memcpy(&newData, &wrappedPacketData, sizeof(event::eventDataWrapper));
+    
     ENetPacket * packet = enet_packet_create (newData,
                                               sizeof (newData) + 1,
                                               ENET_PACKET_FLAG_RELIABLE);

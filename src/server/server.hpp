@@ -19,7 +19,7 @@ class Server
 {
 public:
     Server();
-    void addPlayer();
+    void addPlayer(ENetPeer* peer);
 };
 
 #endif /* server_hpp */

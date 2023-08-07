@@ -14,7 +14,7 @@
 
 #include "event.hpp"
 
-void playerAdded::processEvent(eventDataStruct eventData) {
-    puts("called");
-    std::cout << eventData.name << std::endl;
+void playerAdded::processEvent(eventDataStruct eventData)
+{
+    std::cout << "player " + eventData.name + " has joined the game" << std::endl;
 }
