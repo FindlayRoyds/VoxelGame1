@@ -27,7 +27,19 @@ class EventHandler
 public:
     EventHandler(Server* server);
     EventHandler(Client* client);
-    static void sendEvent(ENetPeer* peer, event::eventType eventName, std::any eventData);
+    template <typename T>
+    static void sendEvent(ENetPeer* peer, event::eventType eventType, T eventData) {
+        uint8_t typeNum = eventType;
+        char* packetData = new char[sizeof(eventData) + sizeof(typeNum)];
+        
+        memcpy(packetData + sizeof(typeNum), &eventData, sizeof(eventData));
+        memcpy(packetData, &typeNum, sizeof(typeNum));
+        
+        ENetPacket * packet = enet_packet_create (packetData,
+                                                  sizeof (packetData) + 1,
+                                                  ENET_PACKET_FLAG_RELIABLE);
+        enet_peer_send(peer, 0, packet);
+    }
     void pollEvents();
 private:
     bool isServer;

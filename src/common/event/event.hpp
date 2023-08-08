@@ -32,11 +32,12 @@ public:
     }
     enum eventType {
         connectionRequest,
-        playerAdded
+        playerAdded,
+        playerLeaving,
     };
     struct eventDataWrapper {
-        eventType eventName;
-        std::any eventData;
+        eventType eventType;
+        const char* eventData;
     };
 protected:
     

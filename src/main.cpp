@@ -22,10 +22,18 @@ void initialiseServer()
 
 int main(int argc, char **argv)
 {
+    int type;
+    std::cin >> type;
+    if (type == 0) {
+        std::thread serverThread(initialiseServer);
+        initialiseClient();
+        
+        serverThread.detach();
+    } else if (type == 1) {
+        initialiseServer();
+    } else if (type == 2) {
+        initialiseClient();
+    }
     
-    std::thread serverThread(initialiseServer);
-    initialiseClient();
-    
-    serverThread.detach();
     return 0;
 }

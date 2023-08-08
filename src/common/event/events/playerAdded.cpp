@@ -16,5 +16,9 @@
 
 void playerAdded::processEvent(eventDataStruct eventData)
 {
-    std::cout << "player " + eventData.name + " has joined the game" << std::endl;
+    if (!eventData.isLocalPlayer) {
+        std::cout << "player with ID " << eventData.playerID << " has joined the game" << std::endl;
+    } else {
+        std::cout << "player ID: " << eventData.playerID << std::endl;
+    }
 }

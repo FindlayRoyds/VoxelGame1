@@ -17,5 +17,18 @@ Server::Server()
 
 void Server::addPlayer(ENetPeer* peer)
 {
-    puts("joined");
+    unsigned int newPlayerID = ++maxPlayerID;
+    //std::cout << "a player joined with playerID " << newPlayerID << std::endl;
+    Player newPlayer;
+    players[newPlayerID] = newPlayer;
+    peers[newPlayerID] = peer;
+    
+    std::cout << newPlayerID << std::endl;
+    
+    for (auto& otherPeer: peers) {
+        playerAdded::eventDataStruct eventData;
+        eventData.playerID = newPlayerID;
+        eventData.isLocalPlayer = otherPeer.second == peer;
+        EventHandler::sendEvent(otherPeer.second, event::eventType::playerAdded, eventData);
+    }
 }

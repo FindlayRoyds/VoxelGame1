@@ -6,3 +6,8 @@
 //
 
 #include "player.hpp"
+
+Player::Player()
+{
+    //ID = playerID;
+}

@@ -9,7 +9,6 @@
 
 void ConnectionRequest::process(eventDataStruct eventData)
 {
-    playerAdded::eventDataStruct newEventData;
     server -> addPlayer(eventData.peer);
 }
 

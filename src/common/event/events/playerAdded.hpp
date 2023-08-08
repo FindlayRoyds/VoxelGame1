@@ -10,8 +10,11 @@
 class playerAdded: public event
 {
 public:
+    
     struct eventDataStruct {
+        unsigned int playerID;
         bool isLocalPlayer;
+        int test = 12;
     };
     static void processEvent(eventDataStruct eventData);
 };

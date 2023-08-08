@@ -14,9 +14,9 @@
 class Player
 {
 public:
-    
+    Player();
 private:
-    unsigned int playerID;
+    unsigned int ID;
 };
 
 #endif /* player_hpp */

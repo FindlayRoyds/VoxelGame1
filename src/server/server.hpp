@@ -10,16 +10,22 @@
 
 #include <stdio.h>
 #include <enet/enet.h>
-#include <thread>
-#include <chrono>
+#include <unordered_map>
 
 #include "eventHandler.hpp"
+#include "event.hpp"
+#include "playerAdded.hpp"
+#include "player.hpp"
 
 class Server
 {
 public:
     Server();
     void addPlayer(ENetPeer* peer);
+private:
+    std::unordered_map<unsigned int, ENetPeer*> peers;
+    std::unordered_map<unsigned int, Player> players;
+    unsigned int maxPlayerID = 0;
 };
 
 #endif /* server_hpp */

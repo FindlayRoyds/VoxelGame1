@@ -38,19 +38,21 @@ void EventHandler::pollEvents()
             }
             case ENET_EVENT_TYPE_RECEIVE: {
                 enet_uint8* rawData = event.packet->data;
-                event::eventDataWrapper wrappedEventData;
-                memcpy(&wrappedEventData, rawData, sizeof(wrappedEventData));
-                std::cout << wrappedEventData.eventName << std::endl;
-                switch (wrappedEventData.eventName) {
+                uint8_t typeNum;
+                memcpy(&typeNum, rawData, sizeof(typeNum));
+                
+                switch (typeNum) {
                     case event::eventType::connectionRequest: {
                         break;
                     }
                     case event::eventType::playerAdded: {
-                        /*playerAdded::eventDataStruct eventData;
-                        memcpy(&eventData, wrappedEventData.eventData, sizeof(*wrappedEventData.eventData));
-                        std::cout << sizeof(eventData) << std::endl;*/
-                        playerAdded::eventDataStruct eventData = std::any_cast<playerAdded::eventDataStruct>(wrappedEventData.eventData);
+                        playerAdded::eventDataStruct eventData;
+                        memcpy(&eventData, rawData+1, sizeof(eventData));
+                        std::cout << eventData.playerID << std::endl;
                         playerAdded::processEvent(eventData);
+                        break;
+                    }
+                    case event::eventType::playerLeaving: {
                         break;
                     }
                 }
@@ -64,17 +66,4 @@ void EventHandler::pollEvents()
     }
 }
 
-void EventHandler::sendEvent(ENetPeer* peer, event::eventType eventName, std::any eventData)
-{
-    event::eventDataWrapper  wrappedPacketData;
-    wrappedPacketData.eventName = eventName;
-    wrappedPacketData.eventData = eventData;
-    
-    const void* newData[sizeof(wrappedPacketData)];
-    memcpy(&newData, &wrappedPacketData, sizeof(event::eventDataWrapper));
-    
-    ENetPacket * packet = enet_packet_create (newData,
-                                              sizeof (newData) + 1,
-                                              ENET_PACKET_FLAG_RELIABLE);
-    enet_peer_send(peer, 0, packet);
-}
+
