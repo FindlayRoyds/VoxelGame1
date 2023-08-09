@@ -13,8 +13,10 @@
 #include <json/json.hpp>
 
 #include "event.hpp"
-#include "events/connectionRequest.hpp"
+#include "events/peerConnected.hpp"
+#include "events/peerDisconnected.hpp"
 #include "events/playerAdded.hpp"
+#include "events/playerLeaving.hpp"
 
 #include "networkHandler.hpp"
 
@@ -28,7 +30,7 @@ public:
     EventHandler(Server* server);
     EventHandler(Client* client);
     template <typename T>
-    static void sendEvent(ENetPeer* peer, event::eventType eventType, T eventData) {
+    static void sendEvent(ENetPeer* peer, Event::eventType eventType, T eventData) {
         uint8_t typeNum = eventType;
         char* packetData = new char[sizeof(eventData) + sizeof(typeNum)];
         

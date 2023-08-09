@@ -22,9 +22,11 @@ class Server
 public:
     Server();
     void addPlayer(ENetPeer* peer);
+    void removePlayer(ENetPeer* peer);
 private:
     std::unordered_map<unsigned int, ENetPeer*> peers;
     std::unordered_map<unsigned int, Player> players;
+    std::unordered_map<ENetPeer*, unsigned int> playerIDs;
     unsigned int maxPlayerID = 0;
 };
 

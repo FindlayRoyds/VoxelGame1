@@ -15,7 +15,7 @@
 class Server;
 class Client;
 
-class event
+class Event
 {
 public:
     inline static bool isServer;
@@ -34,10 +34,6 @@ public:
         connectionRequest,
         playerAdded,
         playerLeaving,
-    };
-    struct eventDataWrapper {
-        eventType eventType;
-        const char* eventData;
     };
 protected:
     

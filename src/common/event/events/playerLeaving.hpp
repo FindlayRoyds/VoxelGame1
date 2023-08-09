@@ -15,10 +15,9 @@
 class PlayerLeaving {
 public:
     struct eventDataStruct {
-        event::eventType eventType = event::eventType::playerLeaving;
         unsigned int playerID;
     };
-    void process(eventDataStruct eventData);
+    static void process(eventDataStruct eventData);
 };
 
 #endif /* playerLeaving_hpp */

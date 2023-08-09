@@ -16,7 +16,7 @@ NetworkHandler::NetworkHandler(bool isServer)
         host = enet_host_create(&address, 32, 1, 0, 0);
     } else {
         host = enet_host_create(NULL, 1, 1, 0, 0);
-        enet_address_set_host(&address, "127.0.0.1");
+        enet_address_set_host(&address, "localhost");//"192.168.0.113");
     }
     
     if (host == NULL) {

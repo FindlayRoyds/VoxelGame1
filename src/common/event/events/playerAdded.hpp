@@ -7,16 +7,15 @@
 
 #include "event.hpp"
 
-class playerAdded: public event
+class PlayerAdded: public Event
 {
 public:
     
     struct eventDataStruct {
         unsigned int playerID;
         bool isLocalPlayer;
-        int test = 12;
     };
-    static void processEvent(eventDataStruct eventData);
+    static void process(eventDataStruct eventData);
 };
 
 #endif

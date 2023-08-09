@@ -24,9 +24,10 @@
 		07ECE64A2A52662400D6FA30 /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE6482A52662400D6FA30 /* server.cpp */; };
 		07ECE64D2A557ED700D6FA30 /* eventHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE64B2A557ED700D6FA30 /* eventHandler.cpp */; };
 		07ECE65A2A7915C100D6FA30 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE6582A7915C100D6FA30 /* player.cpp */; };
-		07ECE65C2A791DA800D6FA30 /* connectionRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE65B2A791DA800D6FA30 /* connectionRequest.cpp */; };
+		07ECE65C2A791DA800D6FA30 /* peerConnected.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE65B2A791DA800D6FA30 /* peerConnected.cpp */; };
 		07ECE65F2A791EFB00D6FA30 /* playerAdded.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE65E2A791EFB00D6FA30 /* playerAdded.cpp */; };
 		07ECE66B2A810EA000D6FA30 /* playerLeaving.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE6692A810EA000D6FA30 /* playerLeaving.cpp */; };
+		07ECE6712A83830B00D6FA30 /* peerDisconnected.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE66F2A83830B00D6FA30 /* peerDisconnected.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -507,13 +508,17 @@
 		07ECE64C2A557ED700D6FA30 /* eventHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = eventHandler.hpp; sourceTree = "<group>"; };
 		07ECE6582A7915C100D6FA30 /* player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
 		07ECE6592A7915C100D6FA30 /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
-		07ECE65B2A791DA800D6FA30 /* connectionRequest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = connectionRequest.cpp; sourceTree = "<group>"; };
+		07ECE65B2A791DA800D6FA30 /* peerConnected.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = peerConnected.cpp; sourceTree = "<group>"; };
 		07ECE65E2A791EFB00D6FA30 /* playerAdded.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = playerAdded.cpp; sourceTree = "<group>"; };
 		07ECE6632A7BB38500D6FA30 /* event.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = event.hpp; sourceTree = "<group>"; };
-		07ECE6672A804CC000D6FA30 /* connectionRequest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = connectionRequest.hpp; sourceTree = "<group>"; };
+		07ECE6672A804CC000D6FA30 /* peerConnected.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = peerConnected.hpp; sourceTree = "<group>"; };
 		07ECE6682A80529100D6FA30 /* playerAdded.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = playerAdded.hpp; sourceTree = "<group>"; };
 		07ECE6692A810EA000D6FA30 /* playerLeaving.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = playerLeaving.cpp; sourceTree = "<group>"; };
 		07ECE66A2A810EA000D6FA30 /* playerLeaving.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = playerLeaving.hpp; sourceTree = "<group>"; };
+		07ECE66D2A82E8DE00D6FA30 /* vshader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = vshader.glsl; sourceTree = "<group>"; };
+		07ECE66E2A82E8DE00D6FA30 /* fshader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = fshader.glsl; sourceTree = "<group>"; };
+		07ECE66F2A83830B00D6FA30 /* peerDisconnected.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = peerDisconnected.cpp; sourceTree = "<group>"; };
+		07ECE6702A83830B00D6FA30 /* peerDisconnected.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = peerDisconnected.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -739,6 +744,9 @@
 		079BA5CD2A41B0380065A0F2 /* client */ = {
 			isa = PBXGroup;
 			children = (
+				07ECE66E2A82E8DE00D6FA30 /* fshader.glsl */,
+				07ECE66D2A82E8DE00D6FA30 /* vshader.glsl */,
+				079BA5DA2A41B3F40065A0F2 /* shader.h */,
 				079BA5C42A41AA970065A0F2 /* graphics.cpp */,
 				079BA5C52A41AA970065A0F2 /* graphics.hpp */,
 				079BA5CE2A41B0630065A0F2 /* input.cpp */,
@@ -770,7 +778,6 @@
 		079BA5D92A41B3CA0065A0F2 /* shader */ = {
 			isa = PBXGroup;
 			children = (
-				079BA5DA2A41B3F40065A0F2 /* shader.h */,
 			);
 			path = shader;
 			sourceTree = "<group>";
@@ -1303,12 +1310,14 @@
 		07ECE65D2A791E2F00D6FA30 /* events */ = {
 			isa = PBXGroup;
 			children = (
-				07ECE65B2A791DA800D6FA30 /* connectionRequest.cpp */,
+				07ECE65B2A791DA800D6FA30 /* peerConnected.cpp */,
 				07ECE65E2A791EFB00D6FA30 /* playerAdded.cpp */,
-				07ECE6672A804CC000D6FA30 /* connectionRequest.hpp */,
+				07ECE6672A804CC000D6FA30 /* peerConnected.hpp */,
 				07ECE6682A80529100D6FA30 /* playerAdded.hpp */,
 				07ECE6692A810EA000D6FA30 /* playerLeaving.cpp */,
 				07ECE66A2A810EA000D6FA30 /* playerLeaving.hpp */,
+				07ECE66F2A83830B00D6FA30 /* peerDisconnected.cpp */,
+				07ECE6702A83830B00D6FA30 /* peerDisconnected.hpp */,
 			);
 			path = events;
 			sourceTree = "<group>";
@@ -1382,7 +1391,8 @@
 				079BA5A72A3D06620065A0F2 /* main.cpp in Sources */,
 				07ECE64A2A52662400D6FA30 /* server.cpp in Sources */,
 				079BA7902A4E52BC0065A0F2 /* block.cpp in Sources */,
-				07ECE65C2A791DA800D6FA30 /* connectionRequest.cpp in Sources */,
+				07ECE65C2A791DA800D6FA30 /* peerConnected.cpp in Sources */,
+				07ECE6712A83830B00D6FA30 /* peerDisconnected.cpp in Sources */,
 				07ECE66B2A810EA000D6FA30 /* playerLeaving.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

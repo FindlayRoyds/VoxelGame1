@@ -14,7 +14,7 @@ EventHandler::EventHandler(Server* server)
 {
     isServer = true;
     this -> server = server;
-    event::setServer(server);
+    Event::setServer(server);
 }
 
 EventHandler::EventHandler(Client* client)
@@ -22,7 +22,7 @@ EventHandler::EventHandler(Client* client)
 {
     isServer = false;
     this -> client = client;
-    event::setClient(client);
+    Event::setClient(client);
 }
 
 void EventHandler::pollEvents()
@@ -30,10 +30,9 @@ void EventHandler::pollEvents()
     for (auto const& event : networkHandler.PollEvent()) {
         switch (event.type) {
             case ENET_EVENT_TYPE_CONNECT: {
-                ConnectionRequest::eventDataStruct eventData;
+                PeerConnected::eventDataStruct eventData;
                 eventData.peer = event.peer;
-                eventData.test = "hello";
-                ConnectionRequest::process(eventData);
+                PeerConnected::process(eventData);
                 break;
             }
             case ENET_EVENT_TYPE_RECEIVE: {
@@ -42,23 +41,27 @@ void EventHandler::pollEvents()
                 memcpy(&typeNum, rawData, sizeof(typeNum));
                 
                 switch (typeNum) {
-                    case event::eventType::connectionRequest: {
+                    case Event::eventType::connectionRequest: {
                         break;
                     }
-                    case event::eventType::playerAdded: {
-                        playerAdded::eventDataStruct eventData;
+                    case Event::eventType::playerAdded: {
+                        PlayerAdded::eventDataStruct eventData;
                         memcpy(&eventData, rawData+1, sizeof(eventData));
-                        std::cout << eventData.playerID << std::endl;
-                        playerAdded::processEvent(eventData);
+                        PlayerAdded::process(eventData);
                         break;
                     }
-                    case event::eventType::playerLeaving: {
-                        break;
+                    case Event::eventType::playerLeaving: {
+                        PlayerLeaving::eventDataStruct eventData;
+                        memcpy(&eventData, rawData+1, sizeof(eventData));
+                        PlayerLeaving::process(eventData);
                     }
                 }
                 break;
             }
             case ENET_EVENT_TYPE_DISCONNECT:
+                PeerDisconnected::eventDataStruct eventData;
+                eventData.peer = event.peer;
+                PeerDisconnected::process(eventData);
                 break;
             case ENET_EVENT_TYPE_NONE:
                 break;

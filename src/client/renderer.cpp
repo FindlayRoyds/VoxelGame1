@@ -14,7 +14,7 @@ const float vertices[] = {
 };
 
 Renderer::Renderer()
-    : shaderProgram("resources/shaders/vshader.vs", "resources/shaders/fshader.fs")
+: shaderProgram()
 {
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);

@@ -14,7 +14,7 @@
 
 #include "event.hpp"
 
-void playerAdded::processEvent(eventDataStruct eventData)
+void PlayerAdded::process(eventDataStruct eventData)
 {
     if (!eventData.isLocalPlayer) {
         std::cout << "player with ID " << eventData.playerID << " has joined the game" << std::endl;

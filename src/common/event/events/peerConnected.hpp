@@ -1,5 +1,5 @@
-#ifndef connectionRequest_hpp
-#define connectionRequest_hpp
+#ifndef peerConnection_hpp
+#define peerConnection_hpp
 
 #include <stdio.h>
 #include <enet/enet.h>
@@ -8,12 +8,11 @@
 #include "server.hpp"
 #include "event.hpp"
 
-class ConnectionRequest: public event
+class PeerConnected: public Event
 {
 public:
     struct eventDataStruct {
         ENetPeer* peer;
-        std::string test;
     };
     static void process(eventDataStruct eventData);
 };
