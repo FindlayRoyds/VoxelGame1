@@ -8,6 +8,7 @@
 #include "server.hpp"
 
 Server::Server()
+: world()
 {
     EventHandler eventHandler(this);
     

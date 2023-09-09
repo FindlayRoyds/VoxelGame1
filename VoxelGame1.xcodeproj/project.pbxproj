@@ -28,6 +28,9 @@
 		07ECE65F2A791EFB00D6FA30 /* playerAdded.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE65E2A791EFB00D6FA30 /* playerAdded.cpp */; };
 		07ECE66B2A810EA000D6FA30 /* playerLeaving.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE6692A810EA000D6FA30 /* playerLeaving.cpp */; };
 		07ECE6712A83830B00D6FA30 /* peerDisconnected.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE66F2A83830B00D6FA30 /* peerDisconnected.cpp */; };
+		07ECE6752A859E0000D6FA30 /* world.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE6732A859E0000D6FA30 /* world.cpp */; };
+		07ECE6792A8ACF5E00D6FA30 /* chunkManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE6772A8ACF5E00D6FA30 /* chunkManager.cpp */; };
+		07ECE67D2A8F8D7600D6FA30 /* chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ECE67B2A8F8D7600D6FA30 /* chunk.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -519,6 +522,13 @@
 		07ECE66E2A82E8DE00D6FA30 /* fshader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = fshader.glsl; sourceTree = "<group>"; };
 		07ECE66F2A83830B00D6FA30 /* peerDisconnected.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = peerDisconnected.cpp; sourceTree = "<group>"; };
 		07ECE6702A83830B00D6FA30 /* peerDisconnected.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = peerDisconnected.hpp; sourceTree = "<group>"; };
+		07ECE6732A859E0000D6FA30 /* world.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = world.cpp; sourceTree = "<group>"; };
+		07ECE6742A859E0000D6FA30 /* world.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = world.hpp; sourceTree = "<group>"; };
+		07ECE6772A8ACF5E00D6FA30 /* chunkManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chunkManager.cpp; sourceTree = "<group>"; };
+		07ECE6782A8ACF5E00D6FA30 /* chunkManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chunkManager.hpp; sourceTree = "<group>"; };
+		07ECE67A2A8AD56600D6FA30 /* tupleHash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tupleHash.hpp; sourceTree = "<group>"; };
+		07ECE67B2A8F8D7600D6FA30 /* chunk.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chunk.cpp; sourceTree = "<group>"; };
+		07ECE67C2A8F8D7600D6FA30 /* chunk.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chunk.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -581,10 +591,11 @@
 		076B20ED2A4FDE6B00E93255 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				07ECE6722A859C3900D6FA30 /* world */,
 				07ECE6572A7915B500D6FA30 /* player */,
 				076B20F22A50373F00E93255 /* event */,
 				076B20EE2A4FDE8800E93255 /* network */,
-				079BA78D2A4E52890065A0F2 /* block */,
+				07ECE67A2A8AD56600D6FA30 /* tupleHash.hpp */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -1268,6 +1279,7 @@
 		079BA78D2A4E52890065A0F2 /* block */ = {
 			isa = PBXGroup;
 			children = (
+				07ECE67E2A92BA8700D6FA30 /* blocks */,
 				079BA78E2A4E52BC0065A0F2 /* block.cpp */,
 				079BA78F2A4E52BC0065A0F2 /* block.hpp */,
 			);
@@ -1320,6 +1332,35 @@
 				07ECE6702A83830B00D6FA30 /* peerDisconnected.hpp */,
 			);
 			path = events;
+			sourceTree = "<group>";
+		};
+		07ECE6722A859C3900D6FA30 /* world */ = {
+			isa = PBXGroup;
+			children = (
+				07ECE6762A8ACF1800D6FA30 /* chunk */,
+				079BA78D2A4E52890065A0F2 /* block */,
+				07ECE6732A859E0000D6FA30 /* world.cpp */,
+				07ECE6742A859E0000D6FA30 /* world.hpp */,
+			);
+			path = world;
+			sourceTree = "<group>";
+		};
+		07ECE6762A8ACF1800D6FA30 /* chunk */ = {
+			isa = PBXGroup;
+			children = (
+				07ECE6772A8ACF5E00D6FA30 /* chunkManager.cpp */,
+				07ECE6782A8ACF5E00D6FA30 /* chunkManager.hpp */,
+				07ECE67B2A8F8D7600D6FA30 /* chunk.cpp */,
+				07ECE67C2A8F8D7600D6FA30 /* chunk.hpp */,
+			);
+			path = chunk;
+			sourceTree = "<group>";
+		};
+		07ECE67E2A92BA8700D6FA30 /* blocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = blocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1381,11 +1422,14 @@
 			files = (
 				079BA5CC2A41AEFF0065A0F2 /* glad.c in Sources */,
 				079BA5D32A41B15F0065A0F2 /* renderer.cpp in Sources */,
+				07ECE6752A859E0000D6FA30 /* world.cpp in Sources */,
 				079BA5C62A41AA970065A0F2 /* graphics.cpp in Sources */,
 				076B207E2A4E6B1400E93255 /* client.cpp in Sources */,
 				07ECE65A2A7915C100D6FA30 /* player.cpp in Sources */,
 				079BA5D02A41B0630065A0F2 /* input.cpp in Sources */,
+				07ECE6792A8ACF5E00D6FA30 /* chunkManager.cpp in Sources */,
 				07ECE64D2A557ED700D6FA30 /* eventHandler.cpp in Sources */,
+				07ECE67D2A8F8D7600D6FA30 /* chunk.cpp in Sources */,
 				07ECE65F2A791EFB00D6FA30 /* playerAdded.cpp in Sources */,
 				076B20F12A4FE09800E93255 /* networkHandler.cpp in Sources */,
 				079BA5A72A3D06620065A0F2 /* main.cpp in Sources */,

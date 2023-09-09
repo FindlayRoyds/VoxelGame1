@@ -16,6 +16,7 @@
 #include "event.hpp"
 #include "playerAdded.hpp"
 #include "player.hpp"
+#include "world.hpp"
 
 class Server
 {
@@ -28,6 +29,8 @@ private:
     std::unordered_map<unsigned int, Player> players;
     std::unordered_map<ENetPeer*, unsigned int> playerIDs;
     unsigned int maxPlayerID = 0;
+    
+    World world;
 };
 
 #endif /* server_hpp */
